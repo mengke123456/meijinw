@@ -3,8 +3,8 @@
 namespace backend\controllers;
 
 use Yii;
-use app\models\Managertbl;
-use backend\models\ManagertblSearch;
+use common\models\Managertbl;
+use common\models\ManagertblSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

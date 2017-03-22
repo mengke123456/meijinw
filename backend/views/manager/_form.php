@@ -2,14 +2,14 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\DepartmentTypetbl;
-use app\models\EducationTypetbl;
-use app\models\PositionTypetbl;
-use app\models\StateTypetbl;
-use app\models\ExaminationTypetbl;
+use common\models\DepartmentTypetbl;
+use common\models\EducationTypetbl;
+use common\models\PositionTypetbl;
+use common\models\StateTypetbl;
+use common\models\ExaminationTypetbl;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Managertbl */
+/* @var $model common\models\Managertbl */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

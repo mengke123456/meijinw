@@ -2,11 +2,11 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use app\models\DepartmentTypetbl;
-use app\models\EducationTypetbl;
-use app\models\PositionTypetbl;
-use app\models\StateTypetbl;
-use app\models\ExaminationTypetbl;
+use common\models\DepartmentTypetbl;
+use common\models\EducationTypetbl;
+use common\models\PositionTypetbl;
+use common\models\StateTypetbl;
+use common\models\ExaminationTypetbl;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ManagertblSearch */
