@@ -2,7 +2,14 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use common\models\Managertbl;
+use common\models\ManagerSearch;
+use common\models\EducationTypetbl;
+use common\models\DepartmentTypetbl;
+use common\models\PositionTypetbl;
+use common\models\StateTypetbl;
+use common\models\ExaminationTypetbl;
+use common\models\AdoptTypetbl;
 /* @var $this yii\web\View */
 /* @var $model common\models\ManagerSearch */
 /* @var $form yii\widgets\ActiveForm */
@@ -68,6 +75,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'state') ?>
 
     <?php // echo $form->field($model, 'examination') ?>
+
+    <?php // echo $form->field($model, 'adopt') ?>
 
     <?php // echo $form->field($model, 'is_del') ?>
 

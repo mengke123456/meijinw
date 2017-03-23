@@ -2,16 +2,16 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use backend\models\Managertbl;
-use backend\models\ManagerSearch;
-use backend\models\EducationTypetbl;
-use backend\models\DepartmentTypetbl;
-use backend\models\PositionTypetbl;
-use backend\models\StateTypetbl;
-use backend\models\ExaminationTypetbl;
-use backend\models\AdoptTypetbl;
+use common\models\Managertbl;
+use common\models\ManagerSearch;
+use common\models\EducationTypetbl;
+use common\models\DepartmentTypetbl;
+use common\models\PositionTypetbl;
+use common\models\StateTypetbl;
+use common\models\ExaminationTypetbl;
+use common\models\AdoptTypetbl;
 /* @var $this yii\web\View */
-/* @var $model backend\models\Managertbl */
+/* @var $model common\models\Managertbl */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => '主管', 'url' => ['index']];
@@ -22,7 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('通过', ['approve1', 'id' => $model->id], [
+
+        <?=
+        //点击通过按钮，找approve1方法 
+        Html::a('通过', ['approve1', 'id' => $model->id], [
             'class' => 'btn btn-primary',
             'data' => [
                 'confirm' => '您确定要通过吗?',
@@ -30,9 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
 
-
-
-        <?= Html::a('不通过', ['approve2', 'id' => $model->id], [
+        <?= 
+        //点击不通过按钮，找approve2方法 
+        Html::a('不通过', ['approve2', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => '您确定要不通过吗?',
