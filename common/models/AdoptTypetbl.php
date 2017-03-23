@@ -38,7 +38,7 @@ class AdoptTypetbl extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'adopt_type' => '通过状态',
+            'adopt_type' => 'Adopt Type',
         ];
     }
 }

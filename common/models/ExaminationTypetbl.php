@@ -7,8 +7,9 @@ use Yii;
 /**
  * This is the model class for table "examination_typetbl".
  *
- * @property string $id
+ * @property integer $id
  * @property string $examination_type
+ * @property integer $is_del
  */
 class ExaminationTypetbl extends \yii\db\ActiveRecord
 {
@@ -26,7 +27,9 @@ class ExaminationTypetbl extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['examination_type'], 'string', 'max' => 30],
+            [['examination_type', 'is_del'], 'required'],
+            [['is_del'], 'integer'],
+            [['examination_type'], 'string', 'max' => 32],
         ];
     }
 
@@ -38,6 +41,7 @@ class ExaminationTypetbl extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'examination_type' => 'Examination Type',
+            'is_del' => 'Is Del',
         ];
     }
 }

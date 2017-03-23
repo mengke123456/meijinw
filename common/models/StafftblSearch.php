@@ -18,8 +18,8 @@ class StafftblSearch extends Stafftbl
     public function rules()
     {
         return [
-            [['id', 'position', 'gmt_create', 'gmt_modified', 'is_del', 'bank', 'department', 'state', 'examination'], 'integer'],
-            [['mobile', 'QQ', 'email', 'emergency_contact_no', 'emergency_contact', 'id_no', 'addr', 'login_pwd', 'acct_id', 'hiredate', 'expiration', 'medical_examination', 'other', 'photo', 'pic_path', 'name', 'education', 'native_place'], 'safe'],
+            [['id', 'department', 'education', 'gmt_create', 'gmt_modified', 'state', 'examination', 'is_del'], 'integer'],
+            [['name', 'position', 'mobile', 'QQ', 'email', 'emergency_contact_no', 'emergency_contact', 'id_no', 'native_place', 'addr', 'Ukey_info', 'login_pwd', 'bank', 'acct_id', 'hiredate', 'expiration', 'medical_examination', 'other', 'photo', 'pic_path'], 'safe'],
         ];
     }
 
@@ -60,34 +60,35 @@ class StafftblSearch extends Stafftbl
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'position' => $this->position,
+            'department' => $this->department,
+            'education' => $this->education,
             'gmt_create' => $this->gmt_create,
             'gmt_modified' => $this->gmt_modified,
-            'is_del' => $this->is_del,
-            'bank' => $this->bank,
             'hiredate' => $this->hiredate,
             'expiration' => $this->expiration,
-            'department' => $this->department,
             'state' => $this->state,
             'examination' => $this->examination,
+            'is_del' => $this->is_del,
         ]);
 
-        $query->andFilterWhere(['like', 'mobile', $this->mobile])
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'position', $this->position])
+            ->andFilterWhere(['like', 'mobile', $this->mobile])
             ->andFilterWhere(['like', 'QQ', $this->QQ])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'emergency_contact_no', $this->emergency_contact_no])
             ->andFilterWhere(['like', 'emergency_contact', $this->emergency_contact])
             ->andFilterWhere(['like', 'id_no', $this->id_no])
+            ->andFilterWhere(['like', 'native_place', $this->native_place])
             ->andFilterWhere(['like', 'addr', $this->addr])
+            ->andFilterWhere(['like', 'Ukey_info', $this->Ukey_info])
             ->andFilterWhere(['like', 'login_pwd', $this->login_pwd])
+            ->andFilterWhere(['like', 'bank', $this->bank])
             ->andFilterWhere(['like', 'acct_id', $this->acct_id])
             ->andFilterWhere(['like', 'medical_examination', $this->medical_examination])
             ->andFilterWhere(['like', 'other', $this->other])
             ->andFilterWhere(['like', 'photo', $this->photo])
-            ->andFilterWhere(['like', 'pic_path', $this->pic_path])
-            ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'education', $this->education])
-            ->andFilterWhere(['like', 'native_place', $this->native_place]);
+            ->andFilterWhere(['like', 'pic_path', $this->pic_path]);
 
         return $dataProvider;
     }

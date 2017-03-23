@@ -7,35 +7,41 @@ use Yii;
 /**
  * This is the model class for table "department_typetbl".
  *
- * @property string $id
+ * @property integer $id
  * @property string $department_type
+ * @property integer $is_del
  */
-class DepartmentTypetbl extends \yii\db\ActiveRecord {
-
+class DepartmentTypetbl extends \yii\db\ActiveRecord
+{
     /**
      * @inheritdoc
      */
-    public static function tableName() {
+    public static function tableName()
+    {
         return 'department_typetbl';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return [
-            [['department_type'], 'string', 'max' => 30],
+            [['department_type'], 'required'],
+            [['is_del'], 'integer'],
+            [['department_type'], 'string', 'max' => 32],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'id' => 'ID',
-            'department_type' => '部门',
+            'department_type' => 'Department Type',
+            'is_del' => 'Is Del',
         ];
     }
-
 }

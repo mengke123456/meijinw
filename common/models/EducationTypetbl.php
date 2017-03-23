@@ -40,7 +40,7 @@ class EducationTypetbl extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'education_type' => '学历类型',
+            'education_type' => 'Education Type',
             'is_del' => 'Is Del',
         ];
     }
