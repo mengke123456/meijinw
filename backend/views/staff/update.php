@@ -1,12 +1,13 @@
 <?php
 
 use yii\helpers\Html;
-
+use common\models\Stafftbl;
+use common\models\StafftblSearch;
 /* @var $this yii\web\View */
 /* @var $model common\models\Stafftbl */
 
-$this->title = '修改职员信息: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => '职员管理', 'url' => ['index']];
+$this->title = '修改在职员工： ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Stafftbls', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = '修改';
 ?>

@@ -2,12 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use common\models\Stafftbl;
+use common\models\StafftblSearch;
 /* @var $this yii\web\View */
 /* @var $model common\models\Stafftbl */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => '职员管理', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '在职员工', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="stafftbl-view">
@@ -16,79 +17,47 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('修改', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?=
-        Html::a('删除', ['delete', 'id' => $model->id], [
+        <?= Html::a('删除', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => '你确定要删除这条信息吗?',
+                'confirm' => '您确定要删除吗?',
                 'method' => 'post',
             ],
-        ])
-        ?>
+        ]) ?>
     </p>
 
-    <?=
-    DetailView::widget([
+    <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
-            [
-                'attribute' => 'department',
-                'value' => $model->departmenttypetbl->department_type,
-            ],
-            //'position',显示关联字段信息
-            [
-                'attribute' => 'position',
-                'value' => $model->positiontypetbl->position_type,
-            ],
+            'name',
+            'department',
+            'position',
             'mobile',
             'QQ',
             'email:email',
             'emergency_contact_no',
             'emergency_contact',
             'id_no',
+            'native_place',
+            'education',
             'addr',
+            //'Ukey_info',
             'login_pwd',
-            //'gmt_create',修改时间格式
-            ['attribute' => 'gmt_create',
-                'format' => ['date', 'php:Y-m-d H:i:s'],
-            ],
-            //'gmt_modified',修改时间格式
-            ['attribute' => 'gmt_modified',
-                'format' => ['date', 'php:Y-m-d H:i:s'],
-            ],
-            //'is_del',
-            //'bank',
-            [
-                'attribute' => 'bank',
-                'value' => $model->banktypetbl->bank_type,
-            ],
+            'gmt_create',
+            'gmt_modified',
+            'bank',
             'acct_id',
             'hiredate',
             'expiration',
+            'medical_examination',
             'other',
             'photo',
             'pic_path',
-            'name',
-            //'department',
-            //'education',显示关联字段信息
-            [
-                'attribute' => 'education',
-                'value' => $model->educationtypetbl->education_type,
-            ],
-            'native_place',
-            //'state',显示关联字段信息
-            [
-                'attribute' => 'state',
-                'value' => $model->statetypetbl->state_type,
-            ],
-            //'examination',显示关联字段信息
-            [
-                'attribute' => 'examination',
-                'value' => $model->examinationtypetbl->examination_type,
-            ],
+            'state',
+            'examination',
+            'is_del',
         ],
-    ])
-    ?>
+    ]) ?>
 
 </div>
