@@ -3,11 +3,6 @@
 namespace common\models;
 
 use Yii;
-use common\models\DepartmentTypetbl;
-use common\models\PositionTypetbl;
-use common\models\EducationTypetbl;
-use common\models\StateTypetbl;
-use common\models\ExaminationTypetbl;
 
 /**
  * This is the model class for table "managertbl".
@@ -55,14 +50,25 @@ class Managertbl extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['name', 'department', 'position', 'mobile', 'QQ', 'email', 'emergency_contact_no', 'emergency_contact', 'id_no', 'native_place', 'education', 'addr', 'Ukey_info', 'login_pwd', 'bank', 'acct_id', 'hiredate', 'expiration', 'state', 'examination'], 'required'],
-            [['department', 'education', 'gmt_create', 'gmt_modified', 'state', 'examination', 'is_del'], 'integer'],
+            [['name', 'department', 'position', 'mobile', 'QQ', 'email', 'emergency_contact_no', 'emergency_contact', 'id_no', 'native_place', 'education', 'addr', 'Ukey_info', 'login_pwd', 'bank', 'acct_id', 'hiredate', 'expiration', 'state', 'examination', 'adopt'], 'required'],
+            [['department', 'education', 'gmt_create', 'gmt_modified', 'state', 'examination', 'adopt', 'is_del'], 'integer'],
             [['hiredate', 'expiration'], 'safe'],
             [['name'], 'string', 'max' => 30],
             [['position', 'QQ', 'emergency_contact', 'Ukey_info', 'login_pwd'], 'string', 'max' => 32],
             [['mobile', 'emergency_contact_no'], 'string', 'max' => 11],
             [['email', 'native_place', 'addr', 'bank', 'medical_examination', 'other', 'photo', 'pic_path'], 'string', 'max' => 128],
             [['id_no', 'acct_id'], 'string', 'max' => 18],
+            //新增验证规则
+            ////手机号,紧急联系人电话,银行卡号
+            [['mobile', 'emergency_contact_no', 'acct_id'], 'integer'],
+            /////确定位数
+            [['mobile', 'emergency_contact_no'], 'string', 'max' => 11, 'min' => 11],
+            ////QQ
+            [['QQ'], 'integer', 'min' => 18],
+            ////邮箱
+            [['email'], 'email'],
+            ////身份证号
+            [['id_no', 'acct_id'], 'string', 'max' => 18, 'min' => 18],
         ];
     }
 
@@ -89,20 +95,20 @@ class Managertbl extends \yii\db\ActiveRecord {
             'gmt_create' => '创建时间',
             'gmt_modified' => '修改时间',
             'bank' => '开户行',
-            'acct_id' => '员工银行卡',
+            'acct_id' => '员工银行卡号',
             'hiredate' => '入职时间',
             'expiration' => '合约到期',
             'medical_examination' => '体检报告',
             'other' => '其他信息',
             'photo' => '照片',
             'pic_path' => '图片存放路径',
-            'state' => '在职状态',
+            'state' => '状态',
             'examination' => '审核',
-            'is_del' => 'Is Del',
+            'adopt' => '通过状态',
+            'is_del' => '删除',
         ];
     }
 
-    //调用yii的beforeSave（），保存数据前自动处理数据
     public function beforeSave($insert) {
         if (parent::beforeSave($insert)) {
             if ($insert) {
@@ -117,7 +123,7 @@ class Managertbl extends \yii\db\ActiveRecord {
         }
     }
 
-//表连接查询
+    //表连接查询
     //部门
     public function getDepartmenttypetbl() {
         return $this->hasOne(DepartmentTypetbl::className(), ['id' => 'department']);
@@ -143,7 +149,12 @@ class Managertbl extends \yii\db\ActiveRecord {
         return $this->hasOne(ExaminationTypetbl::className(), ['id' => 'examination']);
     }
 
-    //自定义修改审核状态（2为已审核）
+    //通过状态
+    public function getAdopttypetbl() {
+        return $this->hasOne(AdoptTypetbl::className(), ['id' => 'adopt']);
+    }
+
+    //设置审核状态(自定义修改)[1为未审核,2为已审核,3为审核失败]
     public function approve() {
         $this->examination = 2;
         return ($this->save() ? true : false);
@@ -154,4 +165,11 @@ class Managertbl extends \yii\db\ActiveRecord {
         return Managertbl::find()->where(['examination' => 1])->count();
     }
 
+    //约束内容，多余的用...显示
+    // public function getBeginning()
+    // {
+    //     $tmpStr = strip_tags($this->id_no);
+    //     $tmpLen = mb_strlen($tmpStr);
+    //     return mb_substr($tmpStr,0,1,'utf-8').(($tmpLen>1)?'...':'');
+    // } 
 }

@@ -2,10 +2,17 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\models\Managertbl;
+use common\models\ManagerSearch;
+use common\models\EducationTypetbl;
+use common\models\DepartmentTypetbl;
+use common\models\PositionTypetbl;
+use common\models\StateTypetbl;
+use common\models\ExaminationTypetbl;
+use common\models\AdoptTypetbl;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Managertbl */
-
+/* @var $model common\models\Managertbl */
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Managertbls', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -16,35 +23,58 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('修改', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('删除', ['delete', 'id' => $model->id], [
+        <?=
+        Html::a('删除', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => '您确定要删除吗？',
+                'confirm' => '您确定要删除吗?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ])
+        ?>
     </p>
 
-    <?= DetailView::widget([
+    <?=
+    DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'name',
-            'department',
-            'position',
+            // ['attribute'=>'id',
+            // ],
+            ['attribute' => 'name',
+            ],
+            [
+                //主表的字段
+                'attribute' => 'departmenttypetbl.department_type',
+                'label' => '部门',
+            ],
+            [
+                //主表的字段
+                'attribute' => 'positiontypetbl.position_type',
+                'label' => '职位',
+            ],
             'mobile',
             'QQ',
             'email:email',
             'emergency_contact_no',
             'emergency_contact',
-            'id_no',
+            ['attribute' => 'id_no',
+            //输出beginning方法
+            //'value'=>'beginning',
+            ],
             'native_place',
-            'education',
+            //'education',
+            ['attribute' => 'educationtypetbl.education_type',
+                'label' => '学历',
+            ],
             'addr',
             //'Ukey_info',
-            //'login_pwd',
-            'gmt_create',
-            'gmt_modified',
+            'login_pwd',
+            ['attribute' => 'gmt_create',
+                'format' => ['date', 'php:Y-m-d'],
+            ],
+            ['attribute' => 'gmt_modified',
+                'format' => ['date', 'php:Y-m-d'],
+            ],
             'bank',
             'acct_id',
             'hiredate',
@@ -52,11 +82,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'medical_examination',
             'other',
             'photo',
-            'pic_path',
-            'state',
-            'examination',
-            'is_del',
+            //'pic_path',
+            ['attribute' => 'statetypetbl.state_type',
+                'label' => '状态',
+            ],
+            ['attribute' => 'examinationtypetbl.examination_type',
+                'label' => '审核状态'
+            ],
+            ['attribute' => 'adopttypetbl.adopt_type',
+                'label' => '通过状态',
+            ],
+        // 'is_del',
         ],
-    ]) ?>
+    ])
+    ?>
 
 </div>

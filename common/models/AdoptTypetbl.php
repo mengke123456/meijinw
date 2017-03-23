@@ -5,19 +5,19 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "examination_typetbl".
+ * This is the model class for table "adopt_typetbl".
  *
- * @property string $id
- * @property string $examination_type
+ * @property integer $id
+ * @property string $adopt_type
  */
-class ExaminationTypetbl extends \yii\db\ActiveRecord
+class AdoptTypetbl extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'examination_typetbl';
+        return 'adopt_typetbl';
     }
 
     /**
@@ -26,7 +26,8 @@ class ExaminationTypetbl extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['examination_type'], 'string', 'max' => 30],
+            [['adopt_type'], 'required'],
+            [['adopt_type'], 'string', 'max' => 32],
         ];
     }
 
@@ -37,7 +38,7 @@ class ExaminationTypetbl extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'examination_type' => 'Examination Type',
+            'adopt_type' => '通过状态',
         ];
     }
 }

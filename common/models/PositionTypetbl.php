@@ -7,9 +7,8 @@ use Yii;
 /**
  * This is the model class for table "position_typetbl".
  *
- * @property integer $id
+ * @property string $id
  * @property string $position_type
- * @property integer $is_del
  */
 class PositionTypetbl extends \yii\db\ActiveRecord
 {
@@ -27,9 +26,7 @@ class PositionTypetbl extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['position_type'], 'required'],
-            [['is_del'], 'integer'],
-            [['position_type'], 'string', 'max' => 32],
+            [['position_type'], 'string', 'max' => 30],
         ];
     }
 
@@ -40,8 +37,7 @@ class PositionTypetbl extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'position_type' => '职位类型',
-            'is_del' => 'Is Del',
+            'position_type' => 'Position Type',
         ];
     }
 }

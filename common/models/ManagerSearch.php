@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
@@ -8,13 +8,13 @@ use yii\data\ActiveDataProvider;
 use common\models\Managertbl;
 
 /**
- * ManagertblSearch represents the model behind the search form about `common\models\Managertbl`.
+ * ManagerSearch represents the model behind the search form about `common\models\Managertbl`.
  */
-class ManagertblSearch extends Managertbl {
+class ManagerSearch extends Managertbl {
 
     //新增表中字段
     public function attributes() {
-        return array_merge(parent::attributes(), ['department_type']);
+        return array_merge(parent::attributes(), ['department_type', 'education_type', 'position_type', 'state_type', 'examination_type', 'adopt_type']);
     }
 
     /**
@@ -23,9 +23,10 @@ class ManagertblSearch extends Managertbl {
     public function rules() {
         return [
             [['id', 'department', 'education', 'gmt_create', 'gmt_modified', 'state', 'examination', 'is_del'], 'integer'],
-            [['name', 'position', 'mobile', 'QQ', 'email', 'emergency_contact_no', 'emergency_contact', 'id_no', 'native_place', 'addr', 'Ukey_info', 'login_pwd', 'bank', 'acct_id', 'hiredate', 'expiration', 'medical_examination', 'other', 'photo', 'pic_path',
+            [['name', 'position', 'mobile', 'QQ', 'email', 'emergency_contact_no', 'emergency_contact', 'id_no', 'native_place', 'addr', 'Ukey_info', 'login_pwd', 'bank', 'acct_id', 'hiredate', 'expiration', 'medical_examination', 'other', 'photo', 'pic_path'
             //新增表字段
-            'department_type', 'education_type', 'position_type', 'state_type', 'examination_type'], 'safe'],
+            , 'department_type', 'education_type', 'position_type', 'state_type', 'examination_type', 'adopt_type',
+                ], 'safe'],
         ];
     }
 
@@ -72,6 +73,7 @@ class ManagertblSearch extends Managertbl {
             'expiration' => $this->expiration,
             'state' => $this->state,
             'examination' => $this->examination,
+            'adopt' => $this->adopt,
             'is_del' => $this->is_del,
         ]);
 
@@ -94,7 +96,7 @@ class ManagertblSearch extends Managertbl {
                 ->andFilterWhere(['like', 'photo', $this->photo])
                 ->andFilterWhere(['like', 'pic_path', $this->pic_path]);
 
-//设置默认排序为：未审核优先
+        //设定审核排序
         $dataProvider->sort->defaultOrder = [
             'examination' => SORT_ASC,
             'id' => SORT_DESC,

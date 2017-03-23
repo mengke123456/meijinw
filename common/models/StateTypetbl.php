@@ -7,9 +7,8 @@ use Yii;
 /**
  * This is the model class for table "state_typetbl".
  *
- * @property integer $id
+ * @property string $id
  * @property string $state_type
- * @property integer $is_del
  */
 class StateTypetbl extends \yii\db\ActiveRecord
 {
@@ -27,9 +26,7 @@ class StateTypetbl extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['state_type'], 'required'],
-            [['is_del'], 'integer'],
-            [['state_type'], 'string', 'max' => 32],
+            [['state_type'], 'string', 'max' => 30],
         ];
     }
 
@@ -40,8 +37,7 @@ class StateTypetbl extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'state_type' => '状态',
-            'is_del' => 'Is Del',
+            'state_type' => 'State Type',
         ];
     }
 }

@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Managertbl */
+/* @var $model common\models\Stafftbl */
 
-$this->title = '修改主管信息: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => '主管信息', 'url' => ['index']];
+$this->title = '修改职员信息: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => '职员管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = '修改';
 ?>
-<div class="managertbl-update">
+<div class="stafftbl-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

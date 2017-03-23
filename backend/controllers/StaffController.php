@@ -3,16 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Managertbl;
-use common\models\ManagerSearch;
+use common\models\Stafftbl;
+use common\models\StafftblSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ManagerController implements the CRUD actions for Managertbl model.
+ * StaffController implements the CRUD actions for Stafftbl model.
  */
-class ManagerController extends Controller
+class StaffController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class ManagerController extends Controller
     }
 
     /**
-     * Lists all Managertbl models.
+     * Lists all Stafftbl models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ManagerSearch();
+        $searchModel = new StafftblSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class ManagerController extends Controller
     }
 
     /**
-     * Displays a single Managertbl model.
+     * Displays a single Stafftbl model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class ManagerController extends Controller
     }
 
     /**
-     * Creates a new Managertbl model.
+     * Creates a new Stafftbl model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Managertbl();
+        $model = new Stafftbl();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class ManagerController extends Controller
     }
 
     /**
-     * Updates an existing Managertbl model.
+     * Updates an existing Stafftbl model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class ManagerController extends Controller
     }
 
     /**
-     * Deletes an existing Managertbl model.
+     * Deletes an existing Stafftbl model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class ManagerController extends Controller
     }
 
     /**
-     * Finds the Managertbl model based on its primary key value.
+     * Finds the Stafftbl model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Managertbl the loaded model
+     * @return Stafftbl the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Managertbl::findOne($id)) !== null) {
+        if (($model = Stafftbl::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
