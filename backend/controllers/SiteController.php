@@ -53,11 +53,22 @@ class SiteController extends Controller
         ];
     }
 
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
     public function actionIndex()
     {
+        //$this->layout='layout1';
         return $this->render('index');
     }
 
+    /**
+     * Login action.
+     *
+     * @return string
+     */
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -74,6 +85,11 @@ class SiteController extends Controller
         }
     }
 
+    /**
+     * Logout action.
+     *
+     * @return string
+     */
     public function actionLogout()
     {
         Yii::$app->user->logout();

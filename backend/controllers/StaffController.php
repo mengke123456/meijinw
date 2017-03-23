@@ -35,13 +35,16 @@ class StaffController extends Controller
      */
     public function actionIndex()
     {
+        
         $searchModel = new StafftblSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        // var_dump($dataProvider);
+        // die;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+       
     }
 
     /**
